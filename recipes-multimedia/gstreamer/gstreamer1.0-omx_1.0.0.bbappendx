@@ -1,0 +1,9 @@
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/gstreamer1.0-omx_git:"
+SRC_URI_append += " \
+    file://0001-gstomxh264dec.patch \
+    file://0002-gstomx.patch \
+    file://0001-gstomxvideodec.patch \
+    "
+
+PACKAGE_ARCH = "${MACHINE_ARCH}"

@@ -1,0 +1,45 @@
+--- a/omx/gstomx.c	2014-06-01 12:03:32.194403573 +0800
++++ b/omx/gstomx.c	2014-06-01 12:24:27.690464336 +0800
+@@ -1625,7 +1625,8 @@
+   if (n == -1)
+     n = port->port_def.nBufferCountActual;
+ 
+-  g_return_val_if_fail (n == port->port_def.nBufferCountActual,
++  printf("n=%d nBufferCountActual=%d %s:%d\n", n, port->port_def.nBufferCountActual, __FILE__,__LINE__);
++  g_return_val_if_fail (n <= port->port_def.nBufferCountActual,
+       OMX_ErrorBadParameter);
+ 
+   GST_INFO_OBJECT (comp->parent,
+@@ -1646,6 +1647,7 @@
+     g_ptr_array_add (port->buffers, buf);
+ 
+     if (buffers) {
++		printf("mmz_user_buffer=%p : size = %ld\n", l->data, port->port_def.nBufferSize);
+       err =
+           OMX_UseBuffer (comp->handle, &buf->omx_buf, port->index, buf,
+           port->port_def.nBufferSize, l->data);
+@@ -1660,6 +1662,7 @@
+           OMX_AllocateBuffer (comp->handle, &buf->omx_buf, port->index, buf,
+           port->port_def.nBufferSize);
+       buf->eglimage = FALSE;
++	  printf("%s:%s:%d\n",__func__,__FILE__,__LINE__);
+     }
+ 
+     if (err != OMX_ErrorNone) {
+@@ -1795,6 +1798,7 @@
+       buf->omx_buf->pAppPrivate = NULL;
+       GST_DEBUG_OBJECT (comp->parent, "%s: deallocating buffer %p (%p)",
+           comp->name, buf, buf->omx_buf->pBuffer);
++	  printf("%s:%s:%d\n",__func__,__FILE__,__LINE__);
+ 
+       tmp = OMX_FreeBuffer (comp->handle, port->index, buf->omx_buf);
+ 
+@@ -2315,7 +2319,7 @@
+ static const GGetTypeFunction types[] = {
+   gst_omx_mpeg2_video_dec_get_type, gst_omx_mpeg4_video_dec_get_type,
+   gst_omx_h264_dec_get_type, gst_omx_h263_dec_get_type,
+-  gst_omx_wmv_dec_get_type, gst_omx_mpeg4_video_enc_get_type,
++  /*gst_omx_wmv_dec_get_type,*/ gst_omx_mpeg4_video_enc_get_type,
+   gst_omx_h264_enc_get_type, gst_omx_h263_enc_get_type,
+   gst_omx_aac_enc_get_type, gst_omx_mjpeg_dec_get_type
+ #ifdef HAVE_VP8
