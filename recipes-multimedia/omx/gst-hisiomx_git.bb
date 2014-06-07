@@ -11,7 +11,7 @@ SRC_URI = " \
     "
 S = "${WORKDIR}/git"
 
-SRCREV = "4796462a9e562da96544e63f49aa4444ce9cd6f3"
+SRCREV = "53ed95db02b30b13ab13cedfe00fb172000ef4fc"
 
 do_configure() {
 	./autogen.sh --noconfigure

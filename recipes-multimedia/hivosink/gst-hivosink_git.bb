@@ -6,7 +6,7 @@ DEPENDS = "virtual/driverlibs-rdk-hisilicon gstreamer1.0 gstreamer1.0-plugins-ba
 
 PV = "1.0+gitr${SRCPV}"
 
-SRCREV = "b0ca4200971cbdd156a01d5ba24806aa0e78e6ba"
+SRCREV = "edeae4badee5ffda7a91447ee8446ed7817ae2a9"
 SRC_URI = "git://github.com/caps-liu/gst-hisivosink.git;protocol=https"
 
 S = "${WORKDIR}/git"
